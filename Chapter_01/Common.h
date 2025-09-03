@@ -6,6 +6,8 @@
 #include <stdio.h>
 #include <stdlib.h>  // exit()
 
+#pragma comment(lib, "Ws2_32.lib")
+
 // 소켓 에러 발생 시 프로그램 종료
 inline void err_quit(const char* msg)
 {

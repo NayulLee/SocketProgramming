@@ -72,17 +72,15 @@ int main(int argc, char* argv[])
 			buf[retval] = '\0'; // 문자열 끝 표시
 			std::cout << "[TCP " << addr << " : " << ntohs(clientaddr.sin_port)
 				<< "]" << buf.data();
-
-			// 데이터 보내기
-			retval = send(client_sock, buf.data(), retval, )
-
 		}
+		// 소켓 닫기
+		closesocket(client_sock);
+		std::cout << "[TCP서버] 클라이언트 종료 : IP주소 = " << addr
+			<< ", 포트 번호 = " << ntohs(clientaddr.sin_port) << std::endl;
 	}
+	closesocket(listen_sock);
 
-
-
-
-
-
+	// 윈속 종료
+	WSACleanup();
 	return 0;
 }

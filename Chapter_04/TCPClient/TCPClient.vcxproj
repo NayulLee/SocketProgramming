@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{400f8c2e-9f1b-4a71-b203-09fd4ec9d9f4}</ProjectGuid>
-    <RootNamespace>TCPServerFixed</RootNamespace>
+    <ProjectGuid>{a1fca6c1-4c21-4207-b6cf-741cbaee4d63}</ProjectGuid>
+    <RootNamespace>TCPClient</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -123,7 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="TCPServer_Fixed.cpp" />
+    <ClCompile Include="TCPClient.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

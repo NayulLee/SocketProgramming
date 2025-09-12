@@ -1,7 +1,9 @@
+#define NOMINMAX
 #include "../../Chapter_01/Common.h"
 #include <iostream>
 #include <WS2tcpip.h>
 #include <string>
+#include <algorithm>
 #include <vector>
 
 std::string SERVERIP = "127.0.0.1";	
@@ -42,13 +44,25 @@ int main(int argc, char* argv[])
 	};
 
 	// 서버와 데이터 통신
-	for (int i = 0; i < 4; i++)
+	for (const auto& msg : testdata)
 	{
-		memset(buf, '#', sizeof(buf));
-		strncpy(buf, testdata[i], strlen(testdata[i]));
+		std::string buffer(BUFSIZE, '#');
+		std::copy_n(msg.begin(),
+					std::min(static_cast<int>(msg.size()), BUFSIZE),
+					buffer.begin());
+
+		retval = send(sock, buffer.data(), BUFSIZE, 0);
+		if (retval == SOCKET_ERROR) {
+			err_display("send()");
+			break;
+		}
+
+		std::cout << "[TCP클라이언트] " << retval << "바이트를 보냈습니다. "
+			<< "원본 메시지: " << msg << std::endl;
 	}
 
+	closesocket(sock);
 
-
-
+	WSACleanup();
+	return 0;
 }

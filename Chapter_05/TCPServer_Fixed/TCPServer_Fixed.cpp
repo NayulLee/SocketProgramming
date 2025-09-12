@@ -54,7 +54,7 @@ int main(int argc, char* argv[])
 		inet_ntop(AF_INET, &clientaddr.sin_addr, addr, sizeof(addr));
 		std::cout << "\n[TCP 서버 클라이언트 접속] : "
 			<< "IP주소 = " << addr
-			<< ", 포트 번호 = " << ntohs(clientaddr.sin_port);
+			<< ", 포트 번호 = " << ntohs(clientaddr.sin_port)<<std::endl;
 
 		while (true)
 		{
@@ -71,7 +71,7 @@ int main(int argc, char* argv[])
 			// 받은 데이터 출력
 			buf[retval] = '\0'; // 문자열 끝 표시
 			std::cout << "[TCP " << addr << " : " << ntohs(clientaddr.sin_port)
-				<< "]" << buf.data();
+				<< "]" << buf.data() << std::endl;
 		}
 		// 소켓 닫기
 		closesocket(client_sock);

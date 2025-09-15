@@ -75,7 +75,7 @@ int main(int argc, char* argv[])
 
 			// 받은 데이터 출력
 			buf[retval] = '\0';
-			printf("[TCP/%s:%d] %s\n", addr, htons(clientaddr.sin_port), buf);
+			printf("[TCP/%s:%d] %s\n", addr, ntohs(clientaddr.sin_port), buf);
 		}
 
 		// 소켓 닫기

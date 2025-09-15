@@ -45,5 +45,47 @@ int main(int argc, char* argv[])
 			err_display("accept()");
 			break;
 		}
+
+		// 접속한 클라이언트 정보 출력
+		char addr[INET_ADDRSTRLEN];
+		inet_ntop(AF_INET, &clientaddr.sin_addr, addr, sizeof(addr));
+		printf("\n[TCP서버] 클라이언트 접속 : IP주소 = %s, 포트 번호 = %d\n",
+			addr, ntohs(clientaddr.sin_port));
+
+		// 클라이언트와 데이터 통신
+		while (1)
+		{
+			// 데이터 받기(고정 길이)
+			retval = recv(client_sock, (char*)&len, sizeof(int), MSG_WAITALL);
+			if (retval == SOCKET_ERROR)
+			{
+				err_display("recv()");
+				break;
+			}
+			else if (retval == 0)
+				break;
+
+			// 데이터 받기(가변 길이)
+			retval == recv(client_sock, buf, len, MSG_WAITALL);
+			if (retval == SOCKET_ERROR)
+			{
+				err_display("recv()");
+				break;
+			}
+
+			// 받은 데이터 출력
+			buf[retval] = '\0';
+			printf("[TCP/%s:%d] %s\n", addr, htons(clientaddr.sin_port), buf);
+		}
+
+		// 소켓 닫기
+		closesocket(client_sock);
+		printf("[TCP서버] 클라이언트 종료 : IP주소 = %s, 포트 번호 = %d\n"
+			, addr, ntohs(clientaddr.sin_port));
 	}
+
+	closesocket(listen_sock);
+
+	WSACleanup();
+	return 0;
 }

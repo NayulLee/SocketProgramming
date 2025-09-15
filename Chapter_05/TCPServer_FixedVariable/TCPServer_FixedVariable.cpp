@@ -66,7 +66,7 @@ int main(int argc, char* argv[])
 				break;
 
 			// 데이터 받기(가변 길이)
-			retval == recv(client_sock, buf, len, MSG_WAITALL);
+			retval = recv(client_sock, buf, len, MSG_WAITALL);
 			if (retval == SOCKET_ERROR)
 			{
 				err_display("recv()");

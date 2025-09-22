@@ -3,7 +3,10 @@
 
 DWORD WINAPI MyThread(LPVOID arg)
 {
-	while (1);
+	while (1)
+	{
+		std::cout << "스레드 실행 중..." << std::endl;
+	}
 	return 0;
 }
 

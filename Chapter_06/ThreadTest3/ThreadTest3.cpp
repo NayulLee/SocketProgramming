@@ -16,6 +16,7 @@ int main(int argc, char* argv[])
 	int num = 100;
 	HANDLE hThread = CreateThread(
 		NULL, 0, MyThread, (LPVOID)(long long)num, CREATE_SUSPENDED, NULL);
+		// 스레드가 일시정지 상태로 생성, ResumeThread() 호출할 때까지 일시정지상태다.
 
 	std::cout << "스레드 실행 전, 계산 결과" << sum << std::endl;
 
